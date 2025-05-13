@@ -42,6 +42,11 @@ let users=new mongoose.Schema({
 })
 let Users=mongoose.model("Users",users) 
 
+let feedback=new mongoose.Schema({
+  userId:String,
+  message:String
+})
+let Feedback=mongoose.model("feedback",feedback) 
 
 //API FOR FETCHING THE Note
 // app.get('/log',(req,res)=>(Log.find().then(()=>res.send())))
@@ -51,7 +56,7 @@ app.get('/Userdata',(req,res)=>(Users.find().then((item)=>res.send(item))))
 //API FOR CREATING Note
 app.post('/CreateNote',(req,res)=>(Note.create(req.body).then((item)=>res.send(item))))
 app.post('/CreateUser',(req,res)=>(Users.create(req.body).then((item)=>res.send(item))))
-
+app.post('/CreateFeedback',(req,res)=>(Feedback.create(req.body).then((item)=>res.send(item))))
 
 app.delete('/delete/:id', async (req, res) => {
     try {
